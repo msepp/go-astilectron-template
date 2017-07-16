@@ -116,11 +116,11 @@ FILEHASH_BIN := sha256sum
 # Common dependencies for the final build product, these are the same for all
 # GOOS and GOARCH variants
 COMMON_DEPS := Makefile \
-                     main.go \
-                     handle_gui.go \
-                     ${LIB_DIR}/app/assets/*.go \
-                     ${LIB_DIR}/app/bootstrap/*.go \
-                     ${LIB_DIR}/app/message/*.go
+               main.go \
+               handle_gui.go \
+               ${LIB_DIR}/app/assets/*.go \
+               ${LIB_DIR}/app/bootstrap/*.go \
+               ${LIB_DIR}/app/message/*.go
 
 # Linker flags for setting version info for config during build.
 LDFLAGS := -X 'github.com/msepp/go-astilectron-template/app/bootstrap.electronVersion=${ELECTRON_VERSION}' \
