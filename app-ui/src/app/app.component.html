@@ -7,6 +7,7 @@
   <table>
     <thead>
       <tr>
+        <th>App</th>
         <th>Build</th>
         <th>Electron</th>
         <th>Astilectron</th>
@@ -14,16 +15,12 @@
     </thead>
     <tbody>
       <tr>
+        <td>{{versions.app}}</td>
         <td>{{versions.build}}</td>
         <td>{{versions.electron}}</td>
         <td>{{versions.astilectron}}</td>
       </tr>
     </tbody>
-    <tfoot>
-      <tr>
-        <td colspan="3">Application versions</td>
-      </tr>
-    </tfoot>
   </table>
 </ng-template>
 <ng-template #loading>

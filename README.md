@@ -13,6 +13,8 @@ This is meant to be a template, a base for a project that you modify and extend 
  * Easily enable/disable dev-tools for builds
  * Builds for different OS/Arch get their specific Electron bundles
  * UI builds are part of the main build
+ * Doesn't need extra http server in Go to serve the UI assets
+ * Disembed assets either under tmp to leave no files behind or under users home/profile for faster launch times on consecutive launches.
 
 ## Requirements
 
@@ -43,5 +45,3 @@ Different versions of Electron or Astilectron can be used by specifying the targ
  * Uses a `restmpl.go` file for empty resources bundle to make automated builds faster when using IDEs. This file is swapped for the generated resources during build.
  * Does not support development builds for UI atm, but devTools can be enabled/disabled in `Makefile`.
  * Building 32bit apps tends to not work on native 32bit environments due to the generated resources file getting too large. Thus usually you have to cross-compile in a 64 bit host for 32bit arches.
- * Currently unpacks electron/astilectron and other resources into under tmp and destroys files on exit. There's currently no way to alter this behavior other than create your own bootstrap.
- * Checksum is only generated for UI asar and even that is not checked.

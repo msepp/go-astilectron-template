@@ -13,6 +13,7 @@ import (
 var gApp *bootstrap.App
 
 func main() {
+
 	// Init new application
 	gApp = bootstrap.New(Asset, RestoreAsset, HandleGUIMessage)
 
@@ -21,6 +22,6 @@ func main() {
 		log.Fatalln(err)
 	}
 
-	// Wait for GUI to exit
-	gApp.WaitAndCleanup()
+	// Wait for app to exit
+	gApp.Wait()
 }

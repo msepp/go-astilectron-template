@@ -30,9 +30,8 @@ func New(dataFn astilectron.Disembedder, restoreFn AssetRestoreFn, msgFn Message
 	}
 }
 
-// WaitAndCleanup is an utility method that waits for renderer process to finish
-// and then cleans up resources.
-func (a *App) WaitAndCleanup() {
+// Wait waits until process has finished.
+func (a *App) Wait() {
 	if a.Renderer == nil {
 		return
 	}
@@ -40,7 +39,7 @@ func (a *App) WaitAndCleanup() {
 	a.Renderer.Wait()
 	a.Renderer.Close()
 
-	if a.assetDir != "" {
+	if UseTemp() && a.assetDir != "" {
 		os.RemoveAll(a.assetDir)
 	}
 }

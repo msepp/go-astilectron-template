@@ -12,6 +12,11 @@
 # prodution builds to omit devtools access
 ENABLE_DEV_TOOLS := true
 
+# Set to true to make app unpack assets to temp at lauch. Will cause assets to
+# be always unpacked at start and deleted when app closes. If false, assets are
+# unpacked under users HOME and vendored assets are re-used between launches.
+USE_TEMP := false
+
 # App version is the application version
 APP_VERSION = v0.1
 
@@ -88,9 +93,7 @@ BINDATA := go-bindata -pkg main -nomemcopy
 # We try to omit all files we don't actually need.
 BINDATA_COMMON := ${VENDOR_ASTILECTRON} \
                   ${UI_DIR}/ui.asar \
-                  ${UI_DIR}/ui.asar.sha256 \
                   ${ICONS_DIR}/*
-
 
 # Valid build targets, ie. supported GOOS + GOARCH combinations.
 VALID_TARGETS := ${APP_FILENAME}-linux-386 \
@@ -107,11 +110,7 @@ RESOURCES_WINDOWS_AMD64 := resources-windows-amd64.go.res
 # Common dependencies for go:generate, files that aren't platform dependent but
 # are included in the generated .go file.
 RESOURCES_DEPS_COMMON := ${UI_DIR}/ui.asar \
-                         ${UI_DIR}/ui.asar.sha256 \
                          ${ICONS}
-
-# Path to the checksum tool binary
-FILEHASH_BIN := sha256sum
 
 # Common dependencies for the final build product, these are the same for all
 # GOOS and GOARCH variants
@@ -125,9 +124,11 @@ COMMON_DEPS := Makefile \
 # Linker flags for setting version info for config during build.
 LDFLAGS := -X 'github.com/msepp/go-astilectron-template/app/bootstrap.electronVersion=${ELECTRON_VERSION}' \
            -X 'github.com/msepp/go-astilectron-template/app/bootstrap.astilectronVersion=${ASTILECTRON_VERSION}' \
+           -X 'github.com/msepp/go-astilectron-template/app/bootstrap.appVersion=${APP_VERSION}' \
            -X 'github.com/msepp/go-astilectron-template/app/bootstrap.resourcesDir=${RESOURCES_DIR}' \
            -X 'github.com/msepp/go-astilectron-template/app/bootstrap.devTools=${ENABLE_DEV_TOOLS}' \
-           -X 'github.com/msepp/go-astilectron-template/app/bootstrap.buildVersion=""tool: ${APP_VERSION}, build: ${BUILD_STRING}""' \
+           -X 'github.com/msepp/go-astilectron-template/app/bootstrap.useTemp=${USE_TEMP}' \
+           -X 'github.com/msepp/go-astilectron-template/app/bootstrap.build=""${BUILD_STRING}""' \
            -X 'github.com/msepp/go-astilectron-template/app/bootstrap.guiName=""${UI_SRC_PROJECT}""' \
            -X 'github.com/msepp/go-astilectron-template/app/bootstrap.name=""${APP_NAME}""' \
            -X 'github.com/msepp/go-astilectron-template/app/bootstrap.prefix=""${APP_PREFIX}""'
@@ -245,11 +246,6 @@ ${RESOURCES_WINDOWS_AMD64}: ${VENDOR_WINDOWS_AMD64} ${BINDATA_COMMON}
 	@$(RM) resources-linux-*.go resources-*-386.go
 	@${BINDATA} -o $@ $^
 
-# Build checksum tool
-${FILEHASH_BIN}:
-	@echo "Building filehash..."
-	@$(MAKE) -C ${FILEHASH_DIR}
-
 # Copies bundled UI to the correct place under resources
 ${UI_DIR}/ui.asar: ${UI_BUNDLE}
 	@echo "Copying UI resources..."
@@ -263,11 +259,6 @@ ${UI_BUNDLE}.stamp:
 	@echo "Updating UI resources..."
 	@grep -q '${APP_NAME}' ${UI_SRC_INDEX} || sed -i -e 's/<title>.*<\/title>/<title>${APP_NAME}<\/title>/' ${UI_SRC_INDEX}
 	@$(MAKE) -C ${UI_SRC_DIR} ${UI_SRC_PROJECT}
-
-# Generates a checksum of UI bundle for verification
-${UI_DIR}/ui.asar.sha256: ${UI_DIR}/ui.asar
-	@echo "Generating integrity hash for UI package"
-	@${FILEHASH_BIN} $< > $@
 
 # Downloads astilectron bundle
 ${VENDOR_ASTILECTRON}:

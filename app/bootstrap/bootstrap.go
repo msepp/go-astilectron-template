@@ -4,18 +4,23 @@ import (
 	"log"
 	"path"
 
-	"github.com/msepp/go-astilectron-template/app/message"
 	astilectron "github.com/asticode/go-astilectron"
+	"github.com/msepp/go-astilectron-template/app/message"
 )
 
-// Bootstrap initializes the app runtime and returns a new application struct.
+// Bootstrap unpacks required assets and creates the application GUI window
 func (a *App) Bootstrap() error {
 	var devTools = DevTools()
 	var err error
 	var hadCrash bool
 
 	// Get directory for placing assets
-	if a.assetDir, err = TmpDataDir(); err != nil {
+	if UseTemp() {
+		a.assetDir, err = TmpDataDir()
+	} else {
+		a.assetDir, err = PersistentDataDir()
+	}
+	if err != nil {
 		return err
 	}
 

@@ -17,15 +17,18 @@ var (
 	// electronVersion is a string that tells the embedded electron version.
 	electronVersion string
 
-	// astliectronVersion is a string that tells the embedded astilectron version.
+	// astilectronVersion is a string that tells the embedded astilectron version.
 	astilectronVersion string
+
+	// appVersion is the application version
+	appVersion string
 
 	// devTools enbables or disables developer tool support. Set to "true" to enable
 	// developer tools.
 	devTools string
 
-	// buildVersion is the applications version
-	buildVersion string
+	// build is the applications build hash
+	build string
 
 	// name is the name of the application.
 	name string
@@ -35,6 +38,11 @@ var (
 
 	// resourcesDir is a path prefix for assets
 	resourcesDir string
+
+	// useTemp tells to unpack assets into temp instead of a permanent location.
+	// If "true", app will disembed everything at startup and delete everything
+	// at exit. It makes startup slower, but makes sure assets are always fresh.
+	useTemp string
 )
 
 // Application icon embedded paths
@@ -67,7 +75,12 @@ func Name() string {
 
 // Build returns current build version
 func Build() string {
-	return buildVersion
+	return build
+}
+
+// Version returns the app version
+func Version() string {
+	return appVersion
 }
 
 // ElectronVersion returns bundled electron version
@@ -83,6 +96,11 @@ func AstilectronVersion() string {
 // DevTools returns if devtools should be enabled
 func DevTools() bool {
 	return strings.EqualFold(devTools, "true")
+}
+
+// UseTemp returns if temp should be user for assets
+func UseTemp() bool {
+	return strings.EqualFold(useTemp, "true")
 }
 
 // EmbeddedResources returns a list of resources that need to be unpacked
@@ -148,8 +166,8 @@ func PersistentDataDir() (string, error) {
 		return "", err
 	}
 
-	tgt := filepath.Join(home, "."+prefix)
-	if err = os.Mkdir(tgt, 0700); err != nil && os.IsExist(err) == false {
+	tgt := filepath.Join(home, "."+prefix, "/"+appVersion)
+	if err = os.MkdirAll(tgt, 0700); err != nil && os.IsExist(err) == false {
 		return "", err
 	}
 
