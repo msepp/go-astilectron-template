@@ -1,0 +1,31 @@
+<h1>
+  {{title}}
+</h1>
+
+<div *ngIf="versions; then versionTable else loading"></div>
+<ng-template #versionTable>
+  <table>
+    <thead>
+      <tr>
+        <th>Build</th>
+        <th>Electron</th>
+        <th>Astilectron</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{versions.build}}</td>
+        <td>{{versions.electron}}</td>
+        <td>{{versions.astilectron}}</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="3">Application versions</td>
+      </tr>
+    </tfoot>
+  </table>
+</ng-template>
+<ng-template #loading>
+  Loading, just a moment...
+</ng-template>

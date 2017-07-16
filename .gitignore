@@ -1,0 +1,4 @@
+go-astilectron-template*
+*.res
+resources/runtime
+resources/ui
