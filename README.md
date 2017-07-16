@@ -18,20 +18,20 @@ This is meant to be a template, a base for a project that you modify and extend 
 
 ## Requirements
 
- * Uses Makefiles for buidling, so you should have `make` installed.
+ * You should have [Go](https://golang.org) installed and set up.
+ * Uses Makefiles for build automation, so you should have `make` installed.
  * `wget` is required for automatically downloading vendored packages
- * `asar` is used for bundling UI resources
+ * [asar](https://github.com/electron/asar) is used for bundling UI resources
    * `npm install -g asar`
- * `angular-cli` for UI scaffolding.
+ * [angular-cli](https://github.com/angular/angular-cli) for UI scaffolding.
    * See [angular-cli](https://github.com/angular/angular-cli) for installation.
- * Ofcourse Golang.
- * Windows builds tested using git bash.
- * `go-bindata` is used for packing binary files into executable.
-   * I've used [lestrrat fork](https://github.com/lestrrat/go-bindata)
- * `github.com/mitchellh/go-homedir`
+ * [go-bindata](https://github.com/lestrrat/go-bindata) is used for packing binary files into executable.
+   * `go get -u github.com/lestrrat/go-bindata/...`
+ * [go-homedir](https://github.com/mitchellh/go-homedir)
    * `go get -u github.com/mitchellh/go-homedir`
- * go-astilectron
+ * [go-astilectron](https://github.com/asticode/go-astilectron)
    * `go get -u github.com/asticode/go-astilectron`
+ * Windows builds tested using git bash.
 
 ## Building
 
