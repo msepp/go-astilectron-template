@@ -19,13 +19,13 @@ This is meant to be a template, a base for a project that you modify and extend 
  * Uses Makefiles for buidling, so you should have `make` installed.
  * `wget` is required for automatically downloading vendored packages
  * `asar` is used for bundling UI resources
-  * `npm install -g asar`
+   * `npm install -g asar`
  * `angular-cli` for UI scaffolding.
-  * See [angular-cli](https://github.com/angular/angular-cli) for installation.
+   * See [angular-cli](https://github.com/angular/angular-cli) for installation.
  * Ofcourse Golang.
  * Windows builds tested using git bash.
  * `go-bindata` is used for packing binary files into executable.
-  * I've used [lestrrat fork](https://github.com/lestrrat/go-bindata)
+   * I've used [lestrrat fork](https://github.com/lestrrat/go-bindata)
 
 ## Building
 
