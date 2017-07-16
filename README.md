@@ -24,7 +24,8 @@ This is meant to be a template, a base for a project that you modify and extend 
   * See [angular-cli](https://github.com/angular/angular-cli) for installation.
  * Ofcourse Golang.
  * Windows builds tested using git bash.
-
+ * `go-bindata` is used for packing binary files into executable.
+  * I've used [lestrrat fork](https://github.com/lestrrat/go-bindata)
 
 ## Building
 
