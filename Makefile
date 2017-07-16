@@ -35,7 +35,7 @@ APP_FILENAME := go-astilectron-template
 # Electron and astilectron versions to use. These versions are passed via env
 # and linker to Go, so you should not need to change them anywhere else.
 ELECTRON_VERSION := v1.6.11
-ASTILECTRON_VERSION := v0.5.0
+ASTILECTRON_VERSION := v0.6.0
 
 # Path to base library content
 LIB_DIR := .

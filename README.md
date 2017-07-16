@@ -33,9 +33,16 @@ This is meant to be a template, a base for a project that you modify and extend 
    * `go get -u github.com/asticode/go-astilectron`
  * Windows builds tested using git bash.
 
-## Building
+## Usage
 
-When requirements are installed, one should be able to just cd into the directory with main.go and run `make`. This should download all deps, install UI packages and build everything into a single executable.
+Make sure you have the requirements installed and run the following commands:
+
+```sh
+go get -u github.com/msepp/go-astilectron-template/...
+cd $GOPATH/src/github.com/msepp/go-astilectron-template
+make
+```
+This will build the sample for your OS/Arch, if supported.
 
 Building non-host targets happens with `make go-astilectron-template-GOOS-ARCH[.exe]`, where GOOS, ARCH should be replaced with target values.
 
