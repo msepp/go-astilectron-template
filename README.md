@@ -48,4 +48,4 @@ Different versions of Electron or Astilectron can be used by specifying the targ
  * Darwin builds are not supported (but maybe are easy to add) since I have no way to verify functionality atm.
  * Uses a `restmpl.go` file for empty resources bundle to make automated builds faster when using IDEs. This file is swapped for the generated resources during build.
  * Does not support development builds for UI atm, but devTools can be enabled/disabled in `Makefile`.
- * Building 32bit apps tends to not work on native 32bit environments due to the generated resources file getting too large. Thus usually you have to cross-compile in a 64 bit host for 32bit arches.
+ * Building on a 32bit host most likely won't work due to limited address space. Use 64bit host and cross-compile.
