@@ -28,6 +28,10 @@ This is meant to be a template, a base for a project that you modify and extend 
  * Windows builds tested using git bash.
  * `go-bindata` is used for packing binary files into executable.
    * I've used [lestrrat fork](https://github.com/lestrrat/go-bindata)
+ * `github.com/mitchellh/go-homedir`
+   * `go get -u github.com/mitchellh/go-homedir`
+ * go-astilectron
+   * `go get -u github.com/asticode/go-astilectron`
 
 ## Building
 
