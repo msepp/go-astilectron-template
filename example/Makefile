@@ -37,9 +37,6 @@ APP_FILENAME := go-astilectron-template
 ELECTRON_VERSION := v1.6.11
 ASTILECTRON_VERSION := v0.6.0
 
-# Path to base library content
-LIB_DIR := .
-
 # Resources dir name
 RESOURCES_DIR := resources
 
@@ -116,10 +113,7 @@ RESOURCES_DEPS_COMMON := ${UI_DIR}/ui.asar \
 # GOOS and GOARCH variants
 COMMON_DEPS := Makefile \
                main.go \
-               handle_gui.go \
-               ${LIB_DIR}/app/assets/*.go \
-               ${LIB_DIR}/app/bootstrap/*.go \
-               ${LIB_DIR}/app/message/*.go
+               handle_gui.go
 
 # Linker flags for setting version info for config during build.
 LDFLAGS := -X 'github.com/msepp/go-astilectron-template/app/bootstrap.electronVersion=${ELECTRON_VERSION}' \

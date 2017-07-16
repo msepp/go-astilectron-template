@@ -39,12 +39,14 @@ Make sure you have the requirements installed and run the following commands:
 
 ```sh
 go get -u github.com/msepp/go-astilectron-template/...
-cd $GOPATH/src/github.com/msepp/go-astilectron-template
+cd $GOPATH/src/github.com/msepp/go-astilectron-template/example
 make
 ```
 This will build the sample for your OS/Arch, if supported.
 
 Building non-host targets happens with `make go-astilectron-template-GOOS-ARCH[.exe]`, where GOOS, ARCH should be replaced with target values.
+
+Just copy the example directory and you should now have a working base for a GUI applicaton project.
 
 ## Changing electron/astilectron version
 
