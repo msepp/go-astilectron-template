@@ -1,5 +1,7 @@
 # go-astilectron-template
 
+__NOTE__ this repo is completely redudant and obsolete nowadays and I encourage you not to use this code as anything else than reading material.
+
 A project template for building desktop apps with Golang, Electron and Angular.
 
 Uses [go-astilectron](https://github.com/asticode/go-astilectron) for Golang/Electron binding.
